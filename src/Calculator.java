@@ -1,30 +1,65 @@
+import java.util.List;
+import java.util.StringJoiner;
+
 public class Calculator {
-    public double addition(double a, double b){
+    /*public double addition(double a, double b){
         double result = a + b;
         System.out.println(a + " + " + b + " = " + result);
         return result;
-    }
+    }*/
 
-    public double substraction(double a, double b){
-        double result = a - b;
-        System.out.println(a + " - " + b + " = " + result);
-        return result;
-    }
-
-    public double muliplication(double a, double b){
-        double result = a * b;
-        System.out.println(a + " * " + b + " = " + result);
-        return result;
-    }
-
-    public double division(double a, double b){
-        double result = a / b;
-        if(b == 0){
-            System.out.println("Error. Cannot divide by 0.");
-            System.exit(0);
+    public double addition(double... numList){
+        StringJoiner sj = new StringJoiner(" + ");
+        double result = 0;
+        for(int i = 0; i < numList.length; i++) {
+            result += numList[i];
+            sj.add(String.valueOf(numList[i]));
         }
+        String s = sj.toString() + " = " + result;
+        System.out.println(s);
+        return result;
+    }
 
-        System.out.println(a + " / " + b + " = " + result);
+    public double substraction(double... numList){
+        double result = numList[0];
+        StringJoiner sj = new StringJoiner(" - ");
+        sj.add(String.valueOf(numList[0]));
+        for(int i = 1; i < numList.length; i++) {
+
+                result -= numList[i];
+                sj.add(String.valueOf(numList[i]));
+        }
+        String s = sj.toString() + " = " + result;
+        System.out.println(s);
+        return result;
+    }
+
+    public double muliplication(double... numList){
+        double result = 1;
+        StringJoiner sj = new StringJoiner(" * ");
+        for(int i = 0; i < numList.length; i++){
+            result *= numList[i];
+            sj.add(String.valueOf(numList[i]));
+        }
+        String s = sj.toString() + " = " + result;
+        System.out.println(s);
+        return result;
+    }
+
+    public double division(double... numList){
+        double result = numList[0];
+        StringJoiner sj = new StringJoiner(" / ");
+        sj.add(String.valueOf(numList[0]));
+        for(int i = 1; i < numList.length; i++){
+            if (numList[i] == 0) {
+                System.out.println("Error. Cannot divide by 0.");
+                System.exit(0);
+            }
+            result /= numList[i];
+            sj.add(String.valueOf(numList[i]));
+        }
+        String s = sj.toString() + " = " + result;
+        System.out.println(s);
         return result;
     }
 
